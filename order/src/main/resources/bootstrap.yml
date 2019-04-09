@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: order
+
+  #从远程拉去配置
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG
+      profile: dev
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
