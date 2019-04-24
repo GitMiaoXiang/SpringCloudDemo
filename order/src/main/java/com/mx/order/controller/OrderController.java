@@ -53,4 +53,19 @@ public class OrderController {
         return evn;
     }
 
+    @GetMapping("1")
+    public String config1() {
+        return evn;
+    }
+
+    @GetMapping("2")
+    public String config2() {
+        return evn;
+    }
+
+    @GetMapping("3")
+    public String config3() {
+        return evn;
+    }
+
 }
