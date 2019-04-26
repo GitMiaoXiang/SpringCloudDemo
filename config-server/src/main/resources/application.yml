@@ -1,0 +1,29 @@
+server:
+  port: 8765
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/GitMiaoXiang/springcloud-config.git
+          username: 14796635306@163.com
+          default-label: master
+          password: 5306..peng
+          basedir: D:\JavaProject\spring-cloud\config-server\target\git\
+
+  rabbitmq:
+    host: 192.168.43.118
+    port: 5672
+    username: root
+    password: sa
