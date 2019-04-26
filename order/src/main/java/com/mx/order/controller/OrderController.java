@@ -1,6 +1,10 @@
 package com.mx.order.controller;
 
 import com.mx.order.clients.ProductClient;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
@@ -20,6 +24,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/order")
 @RefreshScope
+@DefaultProperties(defaultFallback="defaultFallback")
 public class OrderController {
 
     @Autowired
@@ -34,6 +39,10 @@ public class OrderController {
     @Value("${evn}")
     private String evn;
 
+
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
+    })
     @GetMapping("get")
     public String get() {
         //注入LoadBalancerClient方式
@@ -46,6 +55,10 @@ public class OrderController {
         //
         String str = productClient.productMsg();
         return str;
+    }
+
+    public String defaultFallback(){
+        return "太拥挤了！！！！！！！！！！！";
     }
 
     @GetMapping("config")

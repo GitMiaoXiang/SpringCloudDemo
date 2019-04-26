@@ -20,7 +20,8 @@ public class ProductController {
     private RestTemplate restTemplate;
 
     @GetMapping("get")
-    public String get(){
+    public String get() throws InterruptedException {
+        Thread.sleep(4);
         return "product server";
     }
 
