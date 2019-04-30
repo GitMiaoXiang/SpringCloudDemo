@@ -21,7 +21,7 @@ public class ProductController {
 
     @GetMapping("get")
     public String get() throws InterruptedException {
-        Thread.sleep(4);
+//        Thread.sleep(4000);
         return "product server";
     }
 

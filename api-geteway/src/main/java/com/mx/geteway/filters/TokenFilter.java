@@ -40,10 +40,10 @@ public class TokenFilter extends ZuulFilter {
         RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
         String token = request.getParameter("token");
-        if(StringUtils.isEmpty(token)){
-            currentContext.setSendZuulResponse(false);
-            currentContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
-        }
+//        if(StringUtils.isEmpty(token)){
+//            currentContext.setSendZuulResponse(false);
+//            currentContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
+//        }
         return currentContext;
     }
 }
